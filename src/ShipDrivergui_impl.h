@@ -33,7 +33,7 @@
 #endif
 
 #include "AisMaker.h"
-#include "ShipDriver_pi.h"
+#include "Printing_pi.h"
 #include "ShipDrivergui.h"
 #include "ocpn_plugin.h"
 #include "tinyxml.h"
@@ -64,7 +64,7 @@
 #endif
 using namespace std;
 
-class ShipDriver_pi;
+class Printer_pi;
 
 class rtept {
 public:
@@ -97,13 +97,13 @@ public:
 
 class AisMaker;
 
-class Dlg : public ShipDriverBase {
+class Dlg : public PrintingBase {
 public:
     Dlg(wxWindow* parent, wxWindowID id = wxID_ANY,
         const wxString& title = _("ShipDriver"),
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize, long style = SHIPDRIVER_DLG_STYLE);
-    ShipDriver_pi* plugin;
+    Printer_pi* plugin;
 
 #ifdef __ANDROID__
     void OnMouseEvent( wxMouseEvent& event );

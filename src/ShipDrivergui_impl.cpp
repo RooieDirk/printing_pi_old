@@ -35,7 +35,7 @@
 
 #include "qtstylesheet.h"
 #include "ShipDrivergui_impl.h"
-#include "ShipDriver_pi.h"
+#include "Printing_pi.h"
 
 #ifdef __ANDROID__
 wxWindow *g_Window;
@@ -52,7 +52,7 @@ void assign(char* dest, char* arrTest2) { strcpy(dest, arrTest2); }
 
 Dlg::Dlg(wxWindow* parent, wxWindowID id, const wxString& title,
     const wxPoint& pos, const wxSize& size, long style)
-    : ShipDriverBase(parent, id, title, pos, size, style)
+    : PrintingBase(parent, id, title, pos, size, style)
 {
     this->Fit();
     dbg = false; // for debug output set to true
@@ -94,7 +94,7 @@ Dlg::Dlg(wxWindow* parent, wxWindowID id, const wxString& title,
     wxFileConfig* pConf = GetOCPNConfigObject();
 
     if (pConf) {
-        pConf->SetPath("/PlugIns/ShipDriver_pi");
+        pConf->SetPath("/PlugIns/Printer_pi");
 
         pConf->Read("shipdriverUseAis", &m_bUseAis, 0);
         pConf->Read("shipdriverUseFile", &m_bUseFile, 0);
@@ -205,7 +205,7 @@ void Dlg::StartDriving()
         wxString wildcard = wxT("Text files (*.txt)|*.txt|All files (*.*)|*.*");
 
         wxString s = "/";
-        const char* pName = "ShipDriver_pi";
+        const char* pName = "Printer_pi";
         wxString defaultDir = GetPluginDataDir(pName) + s + "data" + s;
 
         wxString defaultFilename = wxEmptyString;
@@ -1285,10 +1285,10 @@ wxString Dlg::createDSCAlertSentence(
     wxString quadrant;
 
  /*
-    - quadrant NE is indicated by the digit “0”,
-    – quadrant NW is indicated by the digit “1”,
-    – quadrant SE is indicated by the digit “2”,
-    – quadrant SW is indicated by the digit “3
+    - quadrant NE is indicated by the digit ï¿½0ï¿½,
+    ï¿½ quadrant NW is indicated by the digit ï¿½1ï¿½,
+    ï¿½ quadrant SE is indicated by the digit ï¿½2ï¿½,
+    ï¿½ quadrant SW is indicated by the digit ï¿½3
 */
     if (nQ == "NE")
         quadrant = "0";
@@ -1448,10 +1448,10 @@ wxString Dlg::createDSCAlertRelaySentence(double lat, double lon, int mmsi, int 
     wxString quadrant;
 
     /*
-       - quadrant NE is indicated by the digit “0”,
-       – quadrant NW is indicated by the digit “1”,
-       – quadrant SE is indicated by the digit “2”,
-       – quadrant SW is indicated by the digit “3
+       - quadrant NE is indicated by the digit ï¿½0ï¿½,
+       ï¿½ quadrant NW is indicated by the digit ï¿½1ï¿½,
+       ï¿½ quadrant SE is indicated by the digit ï¿½2ï¿½,
+       ï¿½ quadrant SW is indicated by the digit ï¿½3
    */
     if (nQ == "NE")
         quadrant = "0";
@@ -1856,7 +1856,7 @@ double Dlg::GetPolarSpeed(double lat, double lon, double cse)
     wxString error;
     wxString s = "/";
 
-    const char* pName = "ShipDriver_pi";
+    const char* pName = "Printer_pi";
 
     wxString polars_path = GetPluginDataDir(pName) + s + "data" + s;
     wxString myFile = polars_path + "arcona.xml";
@@ -2251,7 +2251,7 @@ wxString Dlg::StandardPath()
     wxString oldPath = (std_path.GetUserConfigDir() + s);
     if (wxDirExists(oldPath) && !wxDirExists(stdPath)) {
         wxLogMessage(
-            "ShipDriver_pi: moving config dir %s to %s", oldPath, stdPath);
+            "Printer_pi: moving config dir %s to %s", oldPath, stdPath);
         wxRenameFile(oldPath, stdPath);
     }
 #endif

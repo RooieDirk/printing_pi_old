@@ -13,16 +13,16 @@
 # -------- Options ----------
 
 set(OCPN_TEST_REPO
-    "opencpn/shipdriver-alpha"
+    "opencpn/printing-alpha"
     CACHE STRING "Default repository for untagged builds"
 )
 set(OCPN_BETA_REPO
-    "opencpn/shipdriver-beta"
+    "opencpn/printing-beta"
     CACHE STRING
     "Default repository for tagged builds matching 'beta'"
 )
 set(OCPN_RELEASE_REPO
-    "opencpn/shipdriver-prod"
+    "opencpn/printing-prod"
     CACHE STRING
     "Default repository for tagged builds not matching 'beta'"
 )
@@ -31,12 +31,12 @@ set(OCPN_RELEASE_REPO
 #
 # -------  Plugin setup --------
 #
-set(PKG_NAME ShipDriver_pi)
-set(PKG_VERSION  3.3.3)
+set(PKG_NAME Printing_pi)
+set(PKG_VERSION  0.0.0)
 set(PKG_PRERELEASE "")  # Empty, or a tag like 'beta'
 
-set(DISPLAY_NAME ShipDriver)    # Dialogs, installer artifacts, ...
-set(PLUGIN_API_NAME ShipDriver) # As of GetCommonName() in plugin API
+set(DISPLAY_NAME Printing)    # Dialogs, installer artifacts, ...
+set(PLUGIN_API_NAME Printing) # As of GetCommonName() in plugin API
 set(PKG_SUMMARY "Simulate ship movements")
 set(PKG_DESCRIPTION [=[
 Simulates navigation of a vessel. Using the sail option and a current
@@ -45,14 +45,14 @@ those conditions. Using 'Preferences' the simulator is able to record AIS
 data from itself. This can be replayed to simulate collision situations.
 ]=])
 
-set(PKG_AUTHOR "Mike Rossiter")
+set(PKG_AUTHOR "RooieDirk")
 set(PKG_IS_OPEN_SOURCE "yes")
-set(PKG_HOMEPAGE https://github.com/Rasbats/shipdriver_pi)
-set(PKG_INFO_URL https://opencpn.org/OpenCPN/plugins/shipdriver.html)
+set(PKG_HOMEPAGE https://github.com/RooieDirk/printing_pi)
+set(PKG_INFO_URL https://opencpn.org/OpenCPN/plugins/printing.html)
 
 set(SRC
-    src/ShipDriver_pi.h
-    src/ShipDriver_pi.cpp
+    src/Printing_pi.h
+    src/Printing_pi.cpp
     src/icons.h
     src/icons.cpp
     src/ShipDrivergui.h

@@ -34,9 +34,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class ShipDriverBase
+/// Class PrintingBase
 ///////////////////////////////////////////////////////////////////////////////
-class ShipDriverBase : public wxDialog
+class PrintingBase : public wxDialog
 {
 	private:
 
@@ -104,16 +104,16 @@ class ShipDriverBase : public wxDialog
 		wxTextCtrl* m_textCtrlSART;
 		wxTimer m_timer1;
 
-		ShipDriverBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
+		PrintingBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
 
-		~ShipDriverBase();
+		~PrintingBase();
 
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class shipdriverPreferences
+/// Class printingPreferences
 ///////////////////////////////////////////////////////////////////////////////
-class shipdriverPreferences : public wxDialog
+class printingPreferences : public wxDialog
 {
 	private:
 
@@ -127,9 +127,9 @@ class shipdriverPreferences : public wxDialog
 		wxCheckBox* m_cbAisToFile;
 		wxTextCtrl* m_textCtrlMMSI;
 
-		shipdriverPreferences( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxRESIZE_BORDER );
+		printingPreferences( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxRESIZE_BORDER );
 
-		~shipdriverPreferences();
+		~printingPreferences();
 
 };
 

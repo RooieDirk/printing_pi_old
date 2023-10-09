@@ -82,10 +82,10 @@ static inline bool GribCurrent(
 #define ShipDriver_TOOL_POSITION                                               \
     -1 // Request default positioning of toolbar tool
 
-class ShipDriver_pi : public opencpn_plugin_118 {
+class Printer_pi : public opencpn_plugin_118 {
 public:
-    ShipDriver_pi(void* ppimgr);
-    ~ShipDriver_pi(void);
+    Printer_pi(void* ppimgr);
+    ~Printer_pi(void);
 
     //    The required PlugIn Methods
     int Init(void);
@@ -149,7 +149,7 @@ private:
     double m_GUIScaleFactor;
     void OnClose(wxCloseEvent& event);
 
-    ShipDriver_pi* plugin;
+    Printer_pi* plugin;
 
     Dlg* m_pDialog;
 
