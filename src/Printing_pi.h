@@ -1,3 +1,4 @@
+#pragma once
 /******************************************************************************
  *
  * Project:  OpenCPN
@@ -31,8 +32,8 @@
 #include "wx/wxprec.h"
 
 #ifndef WX_PRECOMP
-#include "wx/wx.h"
-#include <wx/glcanvas.h>
+  #include "wx/wx.h"
+  #include <wx/glcanvas.h>
 #endif // precompiled headers
 
 #include <wx/fileconf.h>
@@ -45,42 +46,17 @@
 #include "json/writer.h"
 
 #include "ocpn_plugin.h" //Required for OCPN plugin functions
-#include "ShipDrivergui_impl.h"
-#include "GribRecordSet.h"
+//#include "Printinggui.h"
+#include "Printinggui_impl.h"
 
-// Define minimum and maximum versions of the grib plugin supported
-#define GRIB_MAX_MAJOR 4
-#define GRIB_MAX_MINOR 1
-#define GRIB_MIN_MAJOR 4
-#define GRIB_MIN_MINOR 1
 
 class Dlg;
-
-static inline bool GribCurrent(
-    GribRecordSet* grib, double lat, double lon, double& C, double& VC)
-{
-    if (!grib)
-        return false;
-
-    if (!GribRecord::getInterpolatedValues(VC, C,
-            grib->m_GribRecordPtrArray[Idx_WIND_VX],
-            grib->m_GribRecordPtrArray[Idx_WIND_VY], lon, lat))
-        return false;
-
-    VC *= 3.6 / 1.852; // knots
-
-    // C += 180;
-    if (C > 360)
-        C -= 360;
-    return true;
-}
 
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
 //----------------------------------------------------------------------------------------------------------
 
-#define ShipDriver_TOOL_POSITION                                               \
-    -1 // Request default positioning of toolbar tool
+class piDC;
 
 class Printer_pi : public opencpn_plugin_118 {
 public:
@@ -106,39 +82,20 @@ public:
 
     //    Optional plugin overrides
     void SetColorScheme(PI_ColorScheme cs);
+    bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
+    bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
+    void CopyVp(PlugIn_ViewPort *vpS);
 
-    //    The override PlugIn Methods
-    void OnContextMenuItemCallback(int id);
-    void SetCursorLatLon(double lat, double lon);
-    void SetNMEASentence(wxString& sentence);
-
-    //    Other public methods
-    void SetShipDriverDialogX(int x) { m_hr_dialog_x = x; };
-    void SetShipDriverDialogY(int x) { m_hr_dialog_y = x; };
-    void SetShipDriverDialogWidth(int x) { m_hr_dialog_width = x; };
-    void SetShipDriverDialogHeight(int x) { m_hr_dialog_height = x; };
-    void SetShipDriverDialogSizeX(int x) { m_hr_dialog_sx = x; }
-    void SetShipDriverDialogSizeY(int x) { m_hr_dialog_sy = x; }
     void OnShipDriverDialogClose();
-
-    int m_hr_dialog_x, m_hr_dialog_y;
-
-    double GetCursorLat(void) { return m_cursor_lat; }
-    double GetCursorLon(void) { return m_cursor_lon; }
-
     void ShowPreferencesDialog(wxWindow* parent);
-    void SetPluginMessage(wxString& message_id, wxString& message_body);
-    bool GribWind(
-        GribRecordSet* grib, double lat, double lon, double& WG, double& VWG);
-
-    bool m_bGribValid;
-    double m_grib_lat, m_grib_lon;
-    double m_tr_spd;
-    double m_tr_dir;
 
     wxString StandardPath();
     wxBitmap m_panelBitmap;
 
+    piDC      *g_pDC;
+    wxMemoryDC m_mDC;
+    PlugIn_ViewPort m_pVP;
+    wxWindow* m_parent_window;
 
 
 private:
@@ -154,7 +111,7 @@ private:
     Dlg* m_pDialog;
 
     wxFileConfig* m_pconfig;
-    wxWindow* m_parent_window;
+
     bool LoadConfig(void);
     bool SaveConfig(void);
 
@@ -162,8 +119,8 @@ private:
     int m_hr_dialog_sx, m_hr_dialog_sy;
     int m_display_width, m_display_height;
     int m_leftclick_tool_id;
-    bool m_bShipDriverShowIcon;
-    bool m_bShowShipDriver;
+    bool m_bPrintingShowIcon = TRUE;
+    bool m_bShowDlg;
 
     bool m_bCopyUseAis;
     bool m_bCopyUseFile;

@@ -12,3 +12,4 @@ plugins
 buildwin/*.7z
 .kde4/
 printing_pi.kde4
+git

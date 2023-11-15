@@ -37,12 +37,9 @@ set(PKG_PRERELEASE "")  # Empty, or a tag like 'beta'
 
 set(DISPLAY_NAME Printing)    # Dialogs, installer artifacts, ...
 set(PLUGIN_API_NAME Printing) # As of GetCommonName() in plugin API
-set(PKG_SUMMARY "Simulate ship movements")
+set(PKG_SUMMARY "Extended chart printing")
 set(PKG_DESCRIPTION [=[
-Simulates navigation of a vessel. Using the sail option and a current
-grib file for wind data, simulates how a sailing vessel might react in
-those conditions. Using 'Preferences' the simulator is able to record AIS
-data from itself. This can be replayed to simulate collision situations.
+Print charts with border scales and more..
 ]=])
 
 set(PKG_AUTHOR "RooieDirk")
@@ -55,15 +52,14 @@ set(SRC
     src/Printing_pi.cpp
     src/icons.h
     src/icons.cpp
-    src/ShipDrivergui.h
-    src/ShipDrivergui.cpp
-    src/ShipDrivergui_impl.cpp
-    src/ShipDrivergui_impl.h
-    src/AisMaker.h
-    src/AisMaker.cpp
-    src/GribRecord.cpp
-    src/GribRecordSet.h
-    src/GribRecord.h
+    src/Printinggui.h
+    src/Printinggui.cpp
+    src/Printinggui_impl.h
+    src/Printinggui_impl.cpp
+    #src/ChartBorders.h
+    #src/ChartBorders.cpp
+    src/ChartMem.h
+    src/ChartMem.cpp
 )
 
 set(PKG_API_LIB api-18)  #  A dir in opencpn-libs/ e. g., api-17 or api-16
