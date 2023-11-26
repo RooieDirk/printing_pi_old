@@ -98,6 +98,8 @@ public:
   wxSlider* Slider2;
   wxStaticText* StaticText1;
   wxTextCtrl* TextCtrl1;
+  wxStaticText* StaticText2;
+  wxTextCtrl* TextCtrl2;
   PreviewWin* PreviewWin1;
   //*)
 
@@ -118,6 +120,8 @@ protected:
   static const long ID_SLIDER2;
   static const long ID_STATICTEXT1;
   static const long ID_TEXTCTRL1;
+  static const long ID_STATICTEXT2;
+  static const long ID_TEXTCTRL2;
   static const long ID_FONTPICKERCTRL2;
   static const long ID_PANEL5;
   static const long ID_PANEL2;

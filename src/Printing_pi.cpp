@@ -87,6 +87,8 @@ extern "C" DECL_EXP opencpn_plugin* create_pi(void* ppimgr)
 
 extern "C" DECL_EXP void destroy_pi(opencpn_plugin* p) { delete p; }
 extern DECL_EXP double PlugInGetDisplaySizeMM();
+extern "C" DECL_EXP void GetCanvasLLPix(PlugIn_ViewPort *vp, wxPoint p,
+                                        double *plat, double *plon);
 
 //---------------------------------------------------------------------------------------------------------
 //
@@ -211,7 +213,7 @@ int Printer_pi::Init(void)
     m_pDialog->plugin = this;
     m_bShowDlg = false;
 
-    return (WANTS_OVERLAY_CALLBACK | WANTS_OPENGL_OVERLAY_CALLBACK
+    return (WANTS_OVERLAY_CALLBACK | WANTS_OPENGL_OVERLAY_CALLBACK | WANTS_DYNAMIC_OPENGL_OVERLAY_CALLBACK
         | WANTS_TOOLBAR_CALLBACK | INSTALLS_TOOLBAR_TOOL | WANTS_PREFERENCES
         | WANTS_ONPAINT_VIEWPORT|  WANTS_CONFIG
         | WANTS_VECTOR_CHART_OBJECT_INFO);
@@ -299,16 +301,24 @@ bool Printer_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
 {
   if (NULL != m_pDialog )
   {
-    wxString m("For this plugin you need to switch of OpenGL");
-    wxMessageDialog* MDlg = new wxMessageDialog (m_parent_window, m);
-    MDlg->ShowModal();
+//     wxString m("For this plugin you need to switch of OpenGL");
+//     wxMessageDialog* MDlg = new wxMessageDialog (m_parent_window, m);
+//     MDlg->ShowModal();
     wxClientDC Odc(m_parent_window);
     //keep a copy of the dc for use without update from O
     wxBitmap bm(Odc.GetSize().x, Odc.GetSize().y);
     m_mDC.SelectObject(bm);
     m_mDC.Blit(0,0, Odc.GetSize().x, Odc.GetSize().y, &Odc, 0,0);
     CopyVp(vp);
-    vpl=vp;
+    // with Opengl the viewprot is not always exact the window so we do some improvement
+//     g_vp_pix_width = Odc.GetSize().GetWidth();
+//     g_vp_pix_height = Odc.GetSize().GetHeight();
+//     GetCanvasLLPix(vp, wxPoint(0,0), &g_vp_lat_max, &g_vp_lon_min);
+//     GetCanvasLLPix(vp, wxPoint(g_vp_pix_width, g_vp_pix_height), &g_vp_lat_min, &g_vp_lon_max);
+//                                             double *plat, double *plon);
+//     chartpix_to_latlong(0, 0, &g_vp_lat_max,&g_vp_lon_min);
+//     chartpix_to_latlong(g_vp_pix_width, g_vp_pix_height, &g_vp_lat_min, &g_vp_lon_max);
+
     m_pDialog->render(&m_mDC);
    }
   return true;
