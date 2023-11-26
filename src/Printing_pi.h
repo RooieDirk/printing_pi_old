@@ -85,6 +85,7 @@ public:
     bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
     bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
     void CopyVp(PlugIn_ViewPort *vpS);
+    wxPoint GetLLPix(double lat, double lon);
 
     void OnShipDriverDialogClose();
     void ShowPreferencesDialog(wxWindow* parent);

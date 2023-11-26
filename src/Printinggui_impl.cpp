@@ -61,7 +61,7 @@ Dlg::Dlg(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& 
 {
   First = new ChartMem();
   First->SetSizeMax(GetPaperSize(g_i_PaperSelection));
-  Second = new CMBorders();
+  Second = new ChartBorderCalc();
   First->AddChild(Second);
 }
 Dlg::~Dlg()

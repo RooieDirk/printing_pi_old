@@ -56,8 +56,8 @@ set(SRC
     src/Printinggui.cpp
     src/Printinggui_impl.h
     src/Printinggui_impl.cpp
-    #src/ChartBorders.h
-    #src/ChartBorders.cpp
+    src/ChartBorders.h
+    src/ChartBorders.cpp
     src/ChartMem.h
     src/ChartMem.cpp
 )

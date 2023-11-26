@@ -70,6 +70,7 @@ wxFont m_LegendaFont;
 wxFont m_NotesFont;
 wxSize PaperSizePix;
 int BorderStyle;
+PlugIn_ViewPort *vpl;
 
 //class Printer_pi;
 class Dlg;
@@ -289,6 +290,7 @@ bool Printer_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
     m_mDC.SelectObject(bm);
     m_mDC.Blit(0,0, dc.GetSize().x, dc.GetSize().y, &dc, 0,0);
     CopyVp(vp);
+    vpl = vp;
     m_pDialog->render(&m_mDC);
   }
   return true;
@@ -306,6 +308,7 @@ bool Printer_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
     m_mDC.SelectObject(bm);
     m_mDC.Blit(0,0, Odc.GetSize().x, Odc.GetSize().y, &Odc, 0,0);
     CopyVp(vp);
+    vpl=vp;
     m_pDialog->render(&m_mDC);
    }
   return true;
@@ -456,3 +459,9 @@ void Printer_pi::OnShipDriverDialogClose()
     RequestRefresh(m_parent_window); // refresh main window
 }
 
+wxPoint Printer_pi::GetLLPix(double lat, double lon)
+{
+  wxPoint LL;
+  GetCanvasPixLL( vpl, &LL, lat, lon);
+  return LL;
+}
