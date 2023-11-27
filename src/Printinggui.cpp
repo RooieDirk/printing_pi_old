@@ -42,8 +42,8 @@ const long PrintingBase::ID_FONTPICKERCTRL2 = wxNewId();
 const long PrintingBase::ID_PANEL5 = wxNewId();
 const long PrintingBase::ID_PANEL2 = wxNewId();
 const long PrintingBase::ID_NOTEBOOK1 = wxNewId();
-const long PrintingBase::ID_BUTTON1 = wxNewId();
-const long PrintingBase::ID_BUTTON2 = wxNewId();
+const long PrintingBase::ID_SAVEBTN = wxNewId();
+const long PrintingBase::ID_CANCELBTN = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(PrintingBase,wxDialog)
@@ -145,10 +145,10 @@ PrintingBase::PrintingBase(wxWindow* parent1, wxWindowID id, const wxString& tit
   Notebook1->AddPage(NotesPanel, _("Notes"), false);
   GridBagSizer1->Add(Notebook1, wxGBPosition(0, 1), wxDefaultSpan, wxALL|wxEXPAND, 5);
   ButtonSizer = new wxBoxSizer(wxHORIZONTAL);
-  Button1 = new wxButton(this, ID_BUTTON1, _("Save"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
-  ButtonSizer->Add(Button1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-  Button2 = new wxButton(this, ID_BUTTON2, _("Label"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
-  ButtonSizer->Add(Button2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+  SaveBtn = new wxButton(this, ID_SAVEBTN, _("Save"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_SAVEBTN"));
+  ButtonSizer->Add(SaveBtn, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+  CancelBtn = new wxButton(this, ID_CANCELBTN, _("Label"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CANCELBTN"));
+  ButtonSizer->Add(CancelBtn, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
   GridBagSizer1->Add(ButtonSizer, wxGBPosition(1, 1), wxDefaultSpan, wxALL|wxEXPAND, 5);
   GridBagSizer1->AddGrowableCol(0);
   GridBagSizer1->AddGrowableRow(0);
@@ -168,7 +168,7 @@ PrintingBase::PrintingBase(wxWindow* parent1, wxWindowID id, const wxString& tit
   Connect(ID_RADIOBOX1,wxEVT_COMMAND_RADIOBOX_SELECTED,(wxObjectEventFunction)&PrintingBase::OnRadioBox1Selected);
   Connect(ID_FONTPICKERCTRL1,wxEVT_COMMAND_FONTPICKER_CHANGED,(wxObjectEventFunction)&PrintingBase::OnBorderFontPickerChanged);
   Connect(ID_FONTPICKERCTRL2,wxEVT_COMMAND_FONTPICKER_CHANGED,(wxObjectEventFunction)&PrintingBase::OnBorderFontPickerChanged);
-  Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&PrintingBase::OnSaveButtonClick);
+  Connect(ID_SAVEBTN,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&PrintingBase::OnSaveButtonClick);
   Connect(wxID_ANY,wxEVT_INIT_DIALOG,(wxObjectEventFunction)&PrintingBase::OnInitDlg);
 
 

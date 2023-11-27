@@ -78,8 +78,8 @@ public:
   virtual ~PrintingBase();
 
   //(*Declarations(PrintingBase)
-  wxButton* Button1;
-  wxButton* Button2;
+  wxButton* SaveBtn;
+  wxButton* CancelBtn;
   wxCheckBox* BottemCB;
   wxCheckBox* LeftCB;
   wxCheckBox* RightCB;
@@ -126,8 +126,8 @@ protected:
   static const long ID_PANEL5;
   static const long ID_PANEL2;
   static const long ID_NOTEBOOK1;
-  static const long ID_BUTTON1;
-  static const long ID_BUTTON2;
+  static const long ID_SAVEBTN;
+  static const long ID_CANCELBTN;
   //*)
     wxWindow* parent;
     wxSize PaperSizeMM= wxSize(2970,2100);

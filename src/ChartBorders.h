@@ -41,11 +41,9 @@ class ChartBorderCalc : public ChartMem
 {
 public:
   void AddChartBorderScales(wxDC* dcIn);
-  wxSize CalcSizes(wxDC* dcIn);
-  wxSize ClientSize;
+  void CalcSizes(wxDC* dcIn);
   void UpdateDCin(wxDC* dc);
   void DrawBorders();
-  wxPoint TopLeft, BottemRight;
   wxRect Rect;
   int BorderHeight, BorderWidth;
 
