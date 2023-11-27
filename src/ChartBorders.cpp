@@ -1,11 +1,11 @@
 // /******************************************************************************
 // *
 // * Project:  OpenCPN
-// * Purpose:  ShipDriver Plugin
-// * Author:   Mike Rossiter
+// * Purpose:  Printing Plugin
+// * Author:   RooieDirk
 // *
 // ***************************************************************************
-// *   Copyright (C) 2017 by Mike Rossiter                                   *
+// *   Copyright (C) 2017 by RooieDirk                                   *
 // *   $EMAIL$                                                               *
 // *                                                                         *
 // *   This program is free software; you can redistribute it and/or modify  *
@@ -93,7 +93,7 @@ void ChartBorderCalc::AddChartBorderScales(wxDC* dcIn) {
 // void ChartBorderCalc::CalcSizes(wxDC* dcIn)
 // Calc and set the wxRect's needed to draw the borders
 // returns the size needed for the output wxDC
-wxSize ChartBorderCalc::CalcSizes(wxDC* dcIn) {
+void ChartBorderCalc::CalcSizes(wxDC* dcIn) {
   dcIn->SetFont(m_BorderFont);
   wxSize Textext = dcIn->GetTextExtent("55°N");
   BorderWidth = Textext.GetWidth() + 14;

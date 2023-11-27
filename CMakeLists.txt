@@ -1,6 +1,6 @@
 # ~~~
 # Summary:      Main plugin build script
-# Copyright (c) 2020-2021 Mike Rossiter
+# Copyright (c) 2020-2021 RooieDirk
 # License:      GPLv3+
 # ~~~
 

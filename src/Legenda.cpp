@@ -1,11 +1,11 @@
 // /******************************************************************************
 // *
 // * Project:  OpenCPN
-// * Purpose:  ShipDriver Plugin
-// * Author:   Mike Rossiter
+// * Purpose:  Printing Plugin
+// * Author:   RooieDirk
 // *
 // ***************************************************************************
-// *   Copyright (C) 2017 by Mike Rossiter                                   *
+// *   Copyright (C) 2017 by RooieDirk                                   *
 // *   $EMAIL$                                                               *
 // *                                                                         *
 // *   This program is free software; you can redistribute it and/or modify  *
