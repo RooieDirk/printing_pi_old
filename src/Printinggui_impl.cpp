@@ -31,6 +31,7 @@
 #include <wx/textfile.h>
 #include <wx/timer.h>
 #include <wx/wx.h>
+#include <wx/wfstream.h>
 #include "wx/tglbtn.h"
 
 #include "qtstylesheet.h"
@@ -115,7 +116,18 @@ void Dlg::OnSaveButtonClick(wxCommandEvent& event)
   wxMemoryDC* mdc = new wxMemoryDC();
   mdc->SelectObject(bm);
   mdc->Blit(0,0, First->GetLastDC()->GetSize().GetWidth(), First->GetLastDC()->GetSize().GetHeight(), First->GetLastDC(), 0, 0);
-  wxString fn("output.png");
+
+  wxFileDialog
+  saveFileDialog(this, _("Save chart file"), "", "",
+                 "PNG files (*.png)|*.png", wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+
+  if (saveFileDialog.ShowModal() == wxID_CANCEL)
+    return;     // the user changed idea...
+
+    // save the current contents in the file;
+    // this can be done with e.g. wxWidgets output streams:
+    //wxFileOutputStream output_stream(saveFileDialog.GetPath());
+  wxString fn(saveFileDialog.GetPath());
   bm.SaveFile(fn, wxBITMAP_TYPE_PNG ) ;
 
 }
