@@ -231,6 +231,12 @@ printingPreferences::printingPreferences( wxWindow* parent, wxWindowID id, const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
+wxBEGIN_EVENT_TABLE(PreviewWin, wxScrolledWindow)
+EVT_PAINT(PreviewWin::OnPaint)
+EVT_ERASE_BACKGROUND(PreviewWin::OnEraseBackground)
+EVT_MOUSE_EVENTS(PreviewWin::OnMouseEvent)
+wxEND_EVENT_TABLE()
+
 PreviewWin::PreviewWin( wxWindow *parent, wxWindowID id, const wxPoint &pos, const wxSize &size, long	style, const wxString &name )
                       : wxScrolledWindow( parent, id,  pos, size, style, name )
 {

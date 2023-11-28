@@ -165,14 +165,15 @@ public:
               long  	style = wxHSCROLL|wxVSCROLL,
               const wxString &  	name = "scrolledWindow");
   ~PreviewWin();
+  virtual void OnPaint( wxPaintEvent &event ){;}
+  virtual void OnEraseBackground(wxEraseEvent& event){;}
+  virtual void OnMouseEvent(wxMouseEvent& event){;}
   virtual wxSize SetSize(wxSize si){return SetSize(si.x, si.y);}
   virtual wxSize SetSize(const int x, const int y);
 
-
-
   wxWindow *  	parentW;
-
-
+private:
+  wxDECLARE_EVENT_TABLE();
 };
 
 ///////////////////////////////////////////////////////////////////////////////
