@@ -40,6 +40,7 @@
 #include <pidc.h>
 #include <wx/paper.h>
 #include "ChartBorders.h"
+#include "Legenda.h"
 
 
 
@@ -64,6 +65,8 @@ Dlg::Dlg(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& 
   First->SetSizeMax(GetPaperSize(g_i_PaperSelection));
   Second = new ChartBorderCalc();
   First->AddChild(Second);
+  Third = new Legenda();
+  Second->AddChild(Third);
 }
 Dlg::~Dlg()
 {

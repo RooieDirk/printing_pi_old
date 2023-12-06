@@ -78,6 +78,7 @@ public:
     Printer_pi* plugin;
     ChartMem* First;
     ChartMem* Second;
+    ChartMem* Third;
     //wxWindow* parent;
 
 #ifdef __ANDROID__

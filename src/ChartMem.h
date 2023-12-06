@@ -72,27 +72,27 @@ protected:
 
 //////////////////////////////////////////////////////////////////////////
 
-class CMBorders : public ChartMem
-{
-public:
-  CMBorders(wxDC* dc){;}
-  CMBorders(ChartMem* pr){;}
-  CMBorders(){;}
-  void UpdateDCin(wxDC* dc);
-  void DrawBorders();
-  wxPoint TopLeft, BottemRight;
-  wxRect Rect;
-  int BorderHeight, BorderWidth;
-
-  wxCoord PrintLabel(wxPoint p, wxString s, long style);
-  double fmod_away(double _x, double _y);
-  bool IsMultiOf(double lon, double div);
-
-protected:
-  void DrawLongitudeScale();
-  void DrawLatitudeScale();
-  float CalcGridSpacing(  float dlon);
-
-
-private:
-};
+// class CMBorders : public ChartMem
+// {
+// public:
+//   CMBorders(wxDC* dc){;}
+//   CMBorders(ChartMem* pr){;}
+//   CMBorders(){;}
+//   void UpdateDCin(wxDC* dc);
+//   void DrawBorders();
+//   wxPoint TopLeft, BottemRight;
+//   wxRect Rect;
+//   int BorderHeight, BorderWidth;
+//
+//   wxCoord PrintLabel(wxPoint p, wxString s, long style);
+//   double fmod_away(double _x, double _y);
+//   bool IsMultiOf(double lon, double div);
+//
+// protected:
+//   void DrawLongitudeScale();
+//   void DrawLatitudeScale();
+//   float CalcGridSpacing(  float dlon);
+//
+//
+// private:
+// };

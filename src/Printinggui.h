@@ -81,7 +81,7 @@ class PrintingBase: public wxDialog
 {
 public:
 
-  PrintingBase(wxWindow* parent1, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long int style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER);
+  PrintingBase(wxWindow* parent1, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long int style = wxDEFAULT_DIALOG_STYLE);
   virtual ~PrintingBase();
 
   //(*Declarations(PrintingBase)
@@ -165,15 +165,15 @@ public:
               long  	style = wxHSCROLL|wxVSCROLL,
               const wxString &  	name = "scrolledWindow");
   ~PreviewWin();
-  virtual void OnPaint( wxPaintEvent &event ){;}
-  virtual void OnEraseBackground(wxEraseEvent& event){;}
-  virtual void OnMouseEvent(wxMouseEvent& event){;}
+//   virtual void OnPaint( wxPaintEvent &event ){event.Skip();}
+//   virtual void OnEraseBackground(wxEraseEvent& event){event.Skip();}
+//   virtual void OnMouseEvent(wxMouseEvent& event){event.Skip();}
   virtual wxSize SetSize(wxSize si){return SetSize(si.x, si.y);}
   virtual wxSize SetSize(const int x, const int y);
 
   wxWindow *  	parentW;
 private:
-  wxDECLARE_EVENT_TABLE();
+//   wxDECLARE_EVENT_TABLE();
 };
 
 ///////////////////////////////////////////////////////////////////////////////

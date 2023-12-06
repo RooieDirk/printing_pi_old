@@ -83,7 +83,7 @@ PrintingBase::PrintingBase(wxWindow* parent1, wxWindowID id, const wxString& tit
   RightCB = new wxCheckBox(BorderPanel, ID_CHECKBOX3, _("Right"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX3"));
   RightCB->SetValue(false);
   StaticBoxSizer1->Add(RightCB, 1, wxALL|wxALIGN_LEFT, 0);
-  BottemCB = new wxCheckBox(BorderPanel, ID_CHECKBOX4, _("Bottem"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX4"));
+  BottemCB = new wxCheckBox(BorderPanel, ID_CHECKBOX4, _("Bottom"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX4"));
   BottemCB->SetValue(false);
   StaticBoxSizer1->Add(BottemCB, 1, wxALL|wxALIGN_LEFT, 0);
   BorderP_FGSizer->Add(StaticBoxSizer1, 1, wxALL|wxEXPAND, 5);
@@ -231,11 +231,11 @@ printingPreferences::printingPreferences( wxWindow* parent, wxWindowID id, const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-wxBEGIN_EVENT_TABLE(PreviewWin, wxScrolledWindow)
-EVT_PAINT(PreviewWin::OnPaint)
-EVT_ERASE_BACKGROUND(PreviewWin::OnEraseBackground)
-EVT_MOUSE_EVENTS(PreviewWin::OnMouseEvent)
-wxEND_EVENT_TABLE()
+// wxBEGIN_EVENT_TABLE(PreviewWin, wxScrolledWindow)
+// EVT_PAINT(PreviewWin::OnPaint)
+// EVT_ERASE_BACKGROUND(PreviewWin::OnEraseBackground)
+// EVT_MOUSE_EVENTS(PreviewWin::OnMouseEvent)
+// wxEND_EVENT_TABLE()
 
 PreviewWin::PreviewWin( wxWindow *parent, wxWindowID id, const wxPoint &pos, const wxSize &size, long	style, const wxString &name )
                       : wxScrolledWindow( parent, id,  pos, size, style, name )

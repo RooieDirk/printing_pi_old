@@ -161,12 +161,12 @@ Printer_pi::~Printer_pi(void)
         ;
 
         if (pConf) {
-
             pConf->SetPath("/PlugIns/Printer_pi");
 //             pConf->Write("shipdriverUseAis", m_bCopyUseAis);
 //             pConf->Write("shipdriverUseFile", m_bCopyUseFile);
 //             pConf->Write("shipdriverMMSI", m_tCopyMMSI);
         }
+        delete m_pDialog;
     }
 }
 

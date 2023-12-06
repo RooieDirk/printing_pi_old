@@ -54,6 +54,5 @@ public:
   bool IsMultiOf(double lon, double div);
 private:
   void SetBorderRect(wxRect* R, wxRect maxR);
-  wxMemoryDC *m_DC;
-  wxDC* DCin;
+  //wxDC* DCin;
 };

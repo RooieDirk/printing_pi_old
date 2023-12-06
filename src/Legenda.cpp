@@ -61,3 +61,19 @@ extern wxFont m_LegendaFont;
 extern wxFont m_NotesFont;
 extern wxSize PaperSizePix;
 extern int BorderStyle;
+
+
+void Legenda::UpdateDCin(wxDC* dc) {
+  wxCoord w, h;
+  dc->GetSize(&w, &h);
+  DcIn = dc;
+  w = wxMin(w, SizeMax.GetWidth());
+  h = wxMin(h, SizeMax.GetHeight());
+  wxBitmap bm(w, h);
+  if (!DC) DC = new wxMemoryDC();
+    DC->SelectObject(wxNullBitmap);
+  DC->SelectObject(bm);
+  DC->Blit(0,0, w, h, dc, 0,0);
+
+  if (Next) Next->UpdateDCin(DC);
+}
