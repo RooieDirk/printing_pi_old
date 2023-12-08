@@ -119,7 +119,7 @@ void Dlg::OnSaveButtonClick(wxCommandEvent& event)
   wxMemoryDC* mdc = new wxMemoryDC();
   mdc->SelectObject(bm);
   mdc->Blit(0,0, First->GetLastDC()->GetSize().GetWidth(), First->GetLastDC()->GetSize().GetHeight(), First->GetLastDC(), 0, 0);
-
+  mdc->SelectObject(wxNullBitmap);
   wxFileDialog
   saveFileDialog(this, _("Save chart file"), "", "",
                  "PNG files (*.png)|*.png", wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
