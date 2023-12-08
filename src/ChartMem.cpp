@@ -119,6 +119,7 @@ void ChartMem::AddChild(ChartMem* newCM)
   Next = newCM;
   Next->SetSizeMax(SizeMax);
   Next->SetPrevious(this);
+  Next->UpdateDCin(GetDC());
   //return Next;
 }
 float ChartMem::PixToLon(wxCoord pix)

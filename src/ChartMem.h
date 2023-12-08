@@ -55,8 +55,9 @@ public:
   wxSize GetMaxSize(){return SizeMax;}
   void SetDC(wxDC* dc){DcIn = dc;}
   wxDC*  GetLastDC(){return (Next)? Next->GetLastDC(): GetDC();}
-protected:
   wxMemoryDC* DC;
+protected:
+
   wxDC* DcIn;
   wxSize SizeMax;
   ChartMem* Next;
