@@ -29,6 +29,8 @@ const long PrintingBase::ID_CHECKBOX2 = wxNewId();
 const long PrintingBase::ID_CHECKBOX3 = wxNewId();
 const long PrintingBase::ID_CHECKBOX4 = wxNewId();
 const long PrintingBase::ID_COMBOBOX1 = wxNewId();
+const long PrintingBase::ID_STATICTEXT3 = wxNewId();
+const long PrintingBase::ID_CHOICE1 = wxNewId();
 const long PrintingBase::ID_RADIOBOX1 = wxNewId();
 const long PrintingBase::ID_FONTPICKERCTRL1 = wxNewId();
 const long PrintingBase::ID_PANEL4 = wxNewId();
@@ -131,6 +133,15 @@ PrintingBase::PrintingBase(wxWindow* parent1, wxWindowID id, const wxString& tit
   GridBagSizer2->Add(StaticText2, wxGBPosition(2, 1), wxDefaultSpan, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
   TextCtrl2 = new wxTextCtrl(LegendaPanel, ID_TEXTCTRL2, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE, wxDefaultValidator, _T("ID_TEXTCTRL2"));
   GridBagSizer2->Add(TextCtrl2, wxGBPosition(2, 2), wxGBSpan(1, 3), wxALL|wxEXPAND, 5);
+  StaticText3 = new wxStaticText(LegendaPanel, ID_STATICTEXT3, _("Depth in:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT3"));
+  GridBagSizer2->Add(StaticText3, wxGBPosition(3, 1), wxDefaultSpan, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+  Choice1 = new wxChoice(LegendaPanel, ID_CHOICE1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
+  Choice1->SetSelection( Choice1->Append(_("Meters")) );
+  Choice1->Append(_("Feet"));
+  Choice1->Append(_("Fathoms"));
+  GridBagSizer2->Add(Choice1, wxGBPosition(3, 2), wxGBSpan(1, 3), wxALL|wxEXPAND, 5);
+
+
   FontPickerCtrl2 = new wxFontPickerCtrl(LegendaPanel, ID_FONTPICKERCTRL2, m_LegendaFont, wxDefaultPosition, wxDefaultSize, wxFNTP_FONTDESC_AS_LABEL|wxFNTP_USEFONT_FOR_LABEL, wxDefaultValidator, _T("ID_FONTPICKERCTRL2"));
   GridBagSizer2->Add(FontPickerCtrl2, wxGBPosition(5, 1), wxGBSpan(1, 4), wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
   LegendaPanel->SetSizer(GridBagSizer2);
@@ -170,7 +181,11 @@ PrintingBase::PrintingBase(wxWindow* parent1, wxWindowID id, const wxString& tit
   Connect(ID_FONTPICKERCTRL2,wxEVT_COMMAND_FONTPICKER_CHANGED,(wxObjectEventFunction)&PrintingBase::OnBorderFontPickerChanged);
   Connect(ID_SAVEBTN,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&PrintingBase::OnSaveButtonClick);
   Connect(wxID_ANY,wxEVT_INIT_DIALOG,(wxObjectEventFunction)&PrintingBase::OnInitDlg);
-
+  Connect(ID_SLIDER1,wxEVT_SCROLL_CHANGED,(wxObjectEventFunction)&PrintingBase::OnSliderCmdScroll);
+  Connect(ID_SLIDER2,wxEVT_SCROLL_CHANGED,(wxObjectEventFunction)&PrintingBase::OnSliderCmdScroll);
+  Connect(ID_TEXTCTRL1,wxEVT_TEXT,(wxObjectEventFunction)&PrintingBase::OnTextCtrlText);
+  Connect(ID_TEXTCTRL2,wxEVT_TEXT,(wxObjectEventFunction)&PrintingBase::OnTextCtrlText);
+  Connect(ID_CHOICE1,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&PrintingBase::OnTextCtrlText);
 
   delete[] choices;
 }

@@ -42,5 +42,7 @@ class Legenda : public ChartMem
 public:
   void UpdateDCin(wxDC* dc);
 private:
+  void DrawLegenda();
+  wxBitmap LegendaBm;
 
 };

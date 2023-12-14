@@ -64,6 +64,7 @@ extern double g_vp_lon_min;
 extern double g_vp_lon_max;
 
 extern PlugIn_ViewPort *vpl;
+wxRect ChRect, ChR1, ChR2, ChR25, ChR3, ChR35;
 
 // wxRealPoint gLLtopLeft, gLLlowRight;
 // wxPoint gPixTopLeft, gPixLowRight;
@@ -100,6 +101,7 @@ void ChartMem::UpdateDCin(wxDC* dc)
 {
   wxCoord w, h;
   dc->GetSize(&w, &h);
+  if(Previous) SizeMax=Previous->GetMaxSize();
   DcIn = dc;
   w = wxMin(w, SizeMax.GetWidth());
   h = wxMin(h, SizeMax.GetHeight());

@@ -70,6 +70,8 @@ wxFont m_LegendaFont;
 wxFont m_NotesFont;
 wxSize PaperSizePix;
 int BorderStyle;
+wxString g_DepthUnits;
+
 PlugIn_ViewPort *vpl;
 
 //class Printer_pi;

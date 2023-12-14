@@ -30,6 +30,9 @@
 #include "Printinggui_impl.h"
 #include "ocpn_plugin.h"
 #include "Legenda.h"
+#include <wx/dc.h>
+#include <wx/dcgraph.h>
+
 
 extern int g_i_PaperSelection;
 extern double g_vp_clat;  // center point
@@ -62,6 +65,17 @@ extern wxFont m_NotesFont;
 extern wxSize PaperSizePix;
 extern int BorderStyle;
 
+extern wxString LegendaText1;
+extern wxString LegendaText2;
+extern wxString DepthUnits;
+extern int SliderH;
+extern int SliderV;
+extern wxRect ChRect;
+extern wxRect ChR1;
+extern wxRect ChR2;
+extern wxRect ChR25;
+extern wxRect ChR3;
+extern wxRect ChR35;
 
 void Legenda::UpdateDCin(wxDC* dc) {
   wxCoord w, h;
@@ -74,6 +88,40 @@ void Legenda::UpdateDCin(wxDC* dc) {
     DC->SelectObject(wxNullBitmap);
   DC->SelectObject(bm);
   DC->Blit(0,0, w, h, dc, 0,0);
-
+  DrawLegenda();
+  int posx= ((ChR1.GetWidth()-LegendaBm.GetWidth())/100*SliderH)+ChR1.GetLeft();
+  int posy= ((ChR1.GetHeight()-LegendaBm.GetHeight())/100*SliderV)+ChR1.GetTop();
+  DC->DrawBitmap(LegendaBm,posx,posy);
   if (Next) Next->UpdateDCin(DC);
+  printf("ChR1.GetWidth()%i  LegendaBm.GetWidth()%i posx%i\n ",ChR1.GetWidth() , LegendaBm.GetWidth(), posx);
+  printf("ChR1.GetHeight()%i  LegendaBm.GetHeight()%i posy%i\n\n ",ChR1.GetHeight() , LegendaBm.GetHeight(), posy);
+}
+
+//https://forums.wxwidgets.org/viewtopic.php?t=19277
+void Legenda::DrawLegenda() {
+  wxCoord w, h;
+  DC->GetSize(&w, &h);
+
+  //make a tempDC to draw LegendaText1
+  wxBitmap bm(w, h, 32);
+  bm.UseAlpha();
+  wxMemoryDC* tdc = new wxMemoryDC();
+  tdc->SelectObject(bm);
+  tdc->SetPen(*wxBLACK_PEN);
+  tdc->SetBackground(*wxTRANSPARENT_BRUSH);
+  tdc->SetFont(m_LegendaFont.Larger().Larger().Larger().Larger());
+  wxRect lr(0,0,w,h);
+  tdc->Clear();
+  tdc->DrawLabel(LegendaText1, lr, wxALIGN_TOP | wxALIGN_CENTER_HORIZONTAL);
+  lr.SetTop(tdc->MaxY());
+  tdc->SetFont(m_LegendaFont.Larger().Larger());
+  tdc->DrawLabel(LegendaText2, lr, wxALIGN_TOP | wxALIGN_CENTER_HORIZONTAL);
+  lr.SetTop(tdc->MaxY());
+  tdc->SetFont(m_LegendaFont);
+  tdc->DrawLabel( wxString::Format("Depth in: %s",DepthUnits), lr, wxALIGN_TOP | wxALIGN_CENTER_HORIZONTAL);
+
+  //wxArrayString x = GetDynamicChartClassNameArray();
+  wxRect l(wxPoint(tdc->MinX(), tdc->MinY()), wxPoint(tdc->MaxX(), tdc->MaxY()));
+
+  LegendaBm = tdc->GetAsBitmap(&l);
 }

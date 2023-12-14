@@ -97,6 +97,8 @@ public:
      void renderPreview();
      void OnBorderFontPickerChanged(wxCommandEvent& event);
      void OnSaveButtonClick(wxCommandEvent& event);
+     void OnTextCtrlText(wxCommandEvent& event);
+     void OnSliderCmdScroll(wxScrollEvent& event);
      //void OnInitDlg(wxInitDialogEvent& event);
 
     wxSize PaperSizeMM;

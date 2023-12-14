@@ -92,6 +92,7 @@ public:
   wxCheckBox* RightCB;
   wxCheckBox* TopCB;
   wxComboBox* PaperSizeCombo;
+  wxChoice* Choice1;
   wxFileDialog* FileDialog1;
   wxFontPickerCtrl* FontPickerCtrl1;
   wxFontPickerCtrl* FontPickerCtrl2;
@@ -106,6 +107,7 @@ public:
   wxStaticText* StaticText1;
   wxTextCtrl* TextCtrl1;
   wxStaticText* StaticText2;
+  wxStaticText* StaticText3;
   wxTextCtrl* TextCtrl2;
   PreviewWin* PreviewWin1;
   //*)
@@ -119,6 +121,8 @@ protected:
   static const long ID_CHECKBOX2;
   static const long ID_CHECKBOX3;
   static const long ID_CHECKBOX4;
+  static const long ID_STATICTEXT3;
+  static const long ID_CHOICE1;
   static const long ID_COMBOBOX1;
   static const long ID_RADIOBOX1;
   static const long ID_FONTPICKERCTRL1;
@@ -149,6 +153,8 @@ private:
   virtual void OnBorderFontPickerChanged(wxCommandEvent& event){event.Skip();}
   virtual void OnInitDlg(wxInitDialogEvent& event){event.Skip();}
   virtual void OnSaveButtonClick(wxCommandEvent& event){event.Skip();}
+  virtual void OnTextCtrlText(wxCommandEvent& event){event.Skip();}
+  virtual void OnSliderCmdScroll(wxScrollEvent& event){event.Skip();}
   //*)
 
 

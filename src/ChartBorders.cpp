@@ -61,7 +61,12 @@ extern wxFont m_LegendaFont;
 extern wxFont m_NotesFont;
 extern wxSize PaperSizePix;
 extern int BorderStyle;
-
+extern wxRect ChRect;
+extern wxRect ChR1;
+extern wxRect ChR2;
+extern wxRect ChR25;
+extern wxRect ChR3;
+extern wxRect ChR35;
 std::vector<double> d{0.0001666666666666666666666666666666666666666666666666667,
                       0.0003333333333333333333333333333333333333333333333333333,
                       0.0016666666666666666666666666666666666666666666666666667,
@@ -90,9 +95,6 @@ void ChartBorderCalc::AddChartBorderScales(wxDC* dcIn) {
            dcIn, 0, 0);
 }
 
-// void ChartBorderCalc::CalcSizes(wxDC* dcIn)
-// Calc and set the wxRect's needed to draw the borders
-// returns the size needed for the output wxDC
 void ChartBorderCalc::CalcSizes(wxDC* dcIn) {
   dcIn->SetFont(m_BorderFont);
   wxSize Textext = dcIn->GetTextExtent("55°N");

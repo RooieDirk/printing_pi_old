@@ -58,6 +58,11 @@ extern wxFont m_LegendaFont;
 extern wxFont m_NotesFont;
 extern wxSize PaperSizePix;
 extern int BorderStyle;
+wxString LegendaText1;
+wxString LegendaText2;
+wxString DepthUnits;
+int SliderH;
+int SliderV;
 
 Dlg::Dlg(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style) : PrintingBase(parent, id, title,  pos, size, style )
 {
@@ -118,7 +123,7 @@ void Dlg::OnSaveButtonClick(wxCommandEvent& event)
   wxBitmap bm(w, h);
   wxMemoryDC* mdc = new wxMemoryDC();
   mdc->SelectObject(bm);
-  mdc->Blit(0,0, First->GetLastDC()->GetSize().GetWidth(), First->GetLastDC()->GetSize().GetHeight(), First->GetLastDC(), 0, 0);
+  mdc->Blit(0,0, w, h, First->GetLastDC(), 0, 0);
   mdc->SelectObject(wxNullBitmap);
   wxFileDialog
   saveFileDialog(this, _("Save chart file"), "", "",
@@ -126,13 +131,25 @@ void Dlg::OnSaveButtonClick(wxCommandEvent& event)
 
   if (saveFileDialog.ShowModal() == wxID_CANCEL)
     return;     // the user changed idea...
-
-    // save the current contents in the file;
-    // this can be done with e.g. wxWidgets output streams:
-    //wxFileOutputStream output_stream(saveFileDialog.GetPath());
   wxString fn(saveFileDialog.GetPath());
   bm.SaveFile(fn, wxBITMAP_TYPE_PNG ) ;
 
+}
+void Dlg::OnTextCtrlText(wxCommandEvent& event)
+{
+  LegendaText1 = TextCtrl1->GetValue();
+  LegendaText2 = TextCtrl2->GetValue();
+  DepthUnits = Choice1->GetString(Choice1->GetSelection());
+  if(First){
+    First->UpdateDC(1);
+    renderPreview();
+  }
+}
+
+void Dlg::OnSliderCmdScroll(wxScrollEvent& event)
+{
+  SliderH = Slider1->GetValue();
+  SliderV = Slider2->GetValue();
 }
 
 wxSize Dlg::GetPaperSize(int Selected)

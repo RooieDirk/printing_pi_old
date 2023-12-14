@@ -48,6 +48,7 @@ public:
   virtual ~ChartMem();
   virtual void UpdateDCin(wxDC* dc);
   void UpdateDC();
+  void UpdateDC(int next){if(next)if(Next) Next->UpdateDC(--next);}
   wxDC* GetDC(){return DC;}
   void AddChild(ChartMem*);
   void SetSizeMax(wxSize size){SizeMax = size; if (Next) Next->SetSizeMax(size);}
@@ -68,32 +69,7 @@ protected:
   wxCoord LonToPix(double lon);
   wxCoord LatToPix(double lat);
   float PixToLat(wxCoord pix);
-  wxRect ChRect, ChR1, ChR2, ChR25, ChR3, ChR35;
+
 };
 
-//////////////////////////////////////////////////////////////////////////
 
-// class CMBorders : public ChartMem
-// {
-// public:
-//   CMBorders(wxDC* dc){;}
-//   CMBorders(ChartMem* pr){;}
-//   CMBorders(){;}
-//   void UpdateDCin(wxDC* dc);
-//   void DrawBorders();
-//   wxPoint TopLeft, BottemRight;
-//   wxRect Rect;
-//   int BorderHeight, BorderWidth;
-//
-//   wxCoord PrintLabel(wxPoint p, wxString s, long style);
-//   double fmod_away(double _x, double _y);
-//   bool IsMultiOf(double lon, double div);
-//
-// protected:
-//   void DrawLongitudeScale();
-//   void DrawLatitudeScale();
-//   float CalcGridSpacing(  float dlon);
-//
-//
-// private:
-// };
