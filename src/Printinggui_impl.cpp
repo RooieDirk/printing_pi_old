@@ -66,12 +66,16 @@ int SliderV;
 
 Dlg::Dlg(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style) : PrintingBase(parent, id, title,  pos, size, style )
 {
+  LegendaText1=TextCtrl1->GetValue();
+  LegendaText2=TextCtrl2->GetValue();
+  DepthUnits = Choice1->GetString(Choice1->GetSelection());
   First = new ChartMem();
   First->SetSizeMax(GetPaperSize(g_i_PaperSelection));
   Second = new ChartBorderCalc();
   First->AddChild(Second);
   Third = new Legenda();
   Second->AddChild(Third);
+
 }
 Dlg::~Dlg()
 {

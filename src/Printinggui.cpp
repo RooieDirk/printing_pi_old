@@ -188,6 +188,7 @@ PrintingBase::PrintingBase(wxWindow* parent1, wxWindowID id, const wxString& tit
   Connect(ID_CHOICE1,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&PrintingBase::OnTextCtrlText);
 
   delete[] choices;
+
 }
 
 PrintingBase::~PrintingBase()

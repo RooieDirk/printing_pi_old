@@ -77,24 +77,27 @@ extern wxRect ChR25;
 extern wxRect ChR3;
 extern wxRect ChR35;
 
+int map(int x, int in_min, int in_max, int out_min, int out_max)
+{
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
 void Legenda::UpdateDCin(wxDC* dc) {
   wxCoord w, h;
   dc->GetSize(&w, &h);
   DcIn = dc;
   w = wxMin(w, SizeMax.GetWidth());
   h = wxMin(h, SizeMax.GetHeight());
-  wxBitmap bm(w, h);
+  wxBitmap bm(w, h, 32);
   if (!DC) DC = new wxMemoryDC();
     DC->SelectObject(wxNullBitmap);
   DC->SelectObject(bm);
   DC->Blit(0,0, w, h, dc, 0,0);
   DrawLegenda();
-  int posx= ((ChR1.GetWidth()-LegendaBm.GetWidth())/100*SliderH)+ChR1.GetLeft();
-  int posy= ((ChR1.GetHeight()-LegendaBm.GetHeight())/100*SliderV)+ChR1.GetTop();
+  int posx= map(SliderH, 0, 100, ChRect.GetLeft(), ChRect.GetRight()-LegendaBm.GetWidth());
+  int posy= map(SliderV, 0, 100, ChRect.GetTop(), ChRect.GetBottom()-LegendaBm.GetHeight());
   DC->DrawBitmap(LegendaBm,posx,posy);
   if (Next) Next->UpdateDCin(DC);
-  printf("ChR1.GetWidth()%i  LegendaBm.GetWidth()%i posx%i\n ",ChR1.GetWidth() , LegendaBm.GetWidth(), posx);
-  printf("ChR1.GetHeight()%i  LegendaBm.GetHeight()%i posy%i\n\n ",ChR1.GetHeight() , LegendaBm.GetHeight(), posy);
 }
 
 //https://forums.wxwidgets.org/viewtopic.php?t=19277
@@ -112,15 +115,17 @@ void Legenda::DrawLegenda() {
   tdc->SetFont(m_LegendaFont.Larger().Larger().Larger().Larger());
   wxRect lr(0,0,w,h);
   tdc->Clear();
-  tdc->DrawLabel(LegendaText1, lr, wxALIGN_TOP | wxALIGN_CENTER_HORIZONTAL);
+  if (LegendaText1 != _(""))
+    tdc->DrawLabel(LegendaText1, lr, wxALIGN_TOP | wxALIGN_CENTER_HORIZONTAL);
   lr.SetTop(tdc->MaxY());
   tdc->SetFont(m_LegendaFont.Larger().Larger());
-  tdc->DrawLabel(LegendaText2, lr, wxALIGN_TOP | wxALIGN_CENTER_HORIZONTAL);
+  if (LegendaText2 != _(""))
+    tdc->DrawLabel(LegendaText2, lr, wxALIGN_TOP | wxALIGN_CENTER_HORIZONTAL);
   lr.SetTop(tdc->MaxY());
   tdc->SetFont(m_LegendaFont);
   tdc->DrawLabel( wxString::Format("Depth in: %s",DepthUnits), lr, wxALIGN_TOP | wxALIGN_CENTER_HORIZONTAL);
 
-  //wxArrayString x = GetDynamicChartClassNameArray();
+
   wxRect l(wxPoint(tdc->MinX(), tdc->MinY()), wxPoint(tdc->MaxX(), tdc->MaxY()));
 
   LegendaBm = tdc->GetAsBitmap(&l);
