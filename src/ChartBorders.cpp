@@ -181,6 +181,7 @@ void ChartBorderCalc::UpdateDCin(wxDC* dc) {
 void ChartBorderCalc::DrawBorders() {
   DC->SetPen(*wxBLACK_PEN);
   DC->SetBrush(*wxWHITE_BRUSH);
+  DC->SetBackground(*wxWHITE_BRUSH);
   DC->Clear();
   DC->SetFont(m_BorderFont);
 
