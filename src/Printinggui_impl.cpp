@@ -124,11 +124,16 @@ void Dlg::OnSaveButtonClick(wxCommandEvent& event)
 {
   wxCoord w, h;
   First->GetLastDC()->GetSize(&w, &h);
-  wxBitmap bm(w, h);
+  wxBitmap bm(w, h, 32);
+  bm.UseAlpha(false);
   wxMemoryDC* mdc = new wxMemoryDC();
   mdc->SelectObject(bm);
+  mdc->SetBackground(*wxWHITE_BRUSH);
+  mdc->Clear();
   mdc->Blit(0,0, w, h, First->GetLastDC(), 0, 0);
   mdc->SelectObject(wxNullBitmap);
+  const wxImage image = bm.ConvertToImage();
+  wxInitAllImageHandlers();
   wxFileDialog
   saveFileDialog(this, _("Save chart file"), "", "",
                  "PNG files (*.png)|*.png", wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
@@ -136,7 +141,9 @@ void Dlg::OnSaveButtonClick(wxCommandEvent& event)
   if (saveFileDialog.ShowModal() == wxID_CANCEL)
     return;     // the user changed idea...
   wxString fn(saveFileDialog.GetPath());
-  bm.SaveFile(fn, wxBITMAP_TYPE_PNG ) ;
+  if ( image.SaveFile(fn, wxBITMAP_TYPE_PNG) )
+    wxLogMessage("Image saved.");
+  //bm.SaveFile(fn, wxBITMAP_TYPE_PNG ) ;
 
 }
 void Dlg::OnTextCtrlText(wxCommandEvent& event)

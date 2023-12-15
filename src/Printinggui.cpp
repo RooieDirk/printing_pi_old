@@ -168,13 +168,12 @@ PrintingBase::PrintingBase(wxWindow* parent1, wxWindowID id, const wxString& tit
   SetSizer(GridBagSizer1);
   Layout();
 
-  //Panel1->Connect(wxEVT_PAINT,(wxObjectEventFunction)&PrintingBase::OnPreviewPaint,0,this);
+
   PreviewWin1->Connect(wxEVT_PAINT,(wxObjectEventFunction)&PrintingBase::OnPreviewPaint,0,this);
   Connect(ID_CHECKBOX1,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&PrintingBase::CheckBoxClick);
   Connect(ID_CHECKBOX2,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&PrintingBase::CheckBoxClick);
   Connect(ID_CHECKBOX3,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&PrintingBase::CheckBoxClick);
   Connect(ID_CHECKBOX4,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&PrintingBase::CheckBoxClick);
-  //Connect(ID_COMBOBOX1,wxEVT_COMMAND_COMBOBOX_SELECTED,(wxObjectEventFunction)&PrintingBase::OnComboBox1Selected);
   Connect(ID_COMBOBOX1,wxEVT_COMMAND_TEXT_UPDATED,(wxObjectEventFunction)&PrintingBase::OnComboBox1Selected);
   Connect(ID_RADIOBOX1,wxEVT_COMMAND_RADIOBOX_SELECTED,(wxObjectEventFunction)&PrintingBase::OnRadioBox1Selected);
   Connect(ID_FONTPICKERCTRL1,wxEVT_COMMAND_FONTPICKER_CHANGED,(wxObjectEventFunction)&PrintingBase::OnBorderFontPickerChanged);

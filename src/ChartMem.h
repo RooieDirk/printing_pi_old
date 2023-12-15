@@ -48,7 +48,7 @@ public:
   virtual ~ChartMem();
   virtual void UpdateDCin(wxDC* dc);
   void UpdateDC();
-  void UpdateDC(int next){if(next)if(Next) Next->UpdateDC(--next);}
+  void UpdateDC(int nextno){if(nextno)if(Next) Next->UpdateDC(--nextno);}
   wxDC* GetDC(){return DC;}
   void AddChild(ChartMem*);
   void SetSizeMax(wxSize size){SizeMax = size; if (Next) Next->SetSizeMax(size);}
