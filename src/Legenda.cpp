@@ -89,6 +89,7 @@ void Legenda::UpdateDCin(wxDC* dc) {
   w = wxMin(w, SizeMax.GetWidth());
   h = wxMin(h, SizeMax.GetHeight());
   wxBitmap bm(w, h, 32);
+  bm.UseAlpha(false);
   if (!DC) DC = new wxMemoryDC();
     DC->SelectObject(wxNullBitmap);
   DC->SelectObject(bm);
@@ -127,6 +128,7 @@ void Legenda::DrawLegenda() {
 
 
   wxRect l(wxPoint(tdc->MinX(), tdc->MinY()), wxPoint(tdc->MaxX(), tdc->MaxY()));
-
+//   LegendaBm.SetHeight(l.GetHeight());
+//   LegendaBm.SetWidth(l.GetWidth());
   LegendaBm = tdc->GetAsBitmap(&l);
 }

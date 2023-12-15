@@ -33,6 +33,10 @@
 #include "wx/wx.h"
 #endif // precompiled headers
 
+#include <wx/bitmap.h>
+#include <wx/image.h>
+
+
 #define TOPBORDER 1
 #define LEFTBORDER 2
 #define RIGHTBORDER 4

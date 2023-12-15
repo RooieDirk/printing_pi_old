@@ -56,6 +56,8 @@
 #include <wx/vector.h>
 #include <wx/dataobj.h>
 #include <wx/list.h>
+#include <wx/bitmap.h>
+#include <wx/image.h>
 #include "ChartMem.h"
 
 #ifdef __WXOSX__

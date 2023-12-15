@@ -37,6 +37,7 @@
 #include "ocpn_plugin.h"
 #include "ChartMem.h"
 
+
 class ChartBorderCalc : public ChartMem
 {
 public:
