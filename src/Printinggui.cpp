@@ -3,7 +3,7 @@
 #include "Printinggui.h"
 #include <wx/paper.h>
 #include "ocpn_plugin.h"
-#include "pidc.h"
+//#include "pidc.h"
 #include <wx/dcclient.h>
 //#include "Printing_pi.h"
 

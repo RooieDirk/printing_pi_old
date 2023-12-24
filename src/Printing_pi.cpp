@@ -32,7 +32,7 @@
 #endif // precompiled headers
 
 #include <wx/graphics.h>
-#include "pidc.h"
+//#include "pidc.h"
 #include "Printing_pi.h"
 #include "Printinggui.h"
 #include "Printinggui_impl.h"
@@ -204,7 +204,7 @@ int Printer_pi::Init(void)
             -1, 0, this);
 #endif
     }
-    g_pDC = new piDC( );
+    //g_pDC = new piDC( );
     g_DisplaySizeMM = PlugInGetDisplaySizeMM();
     wxDisplay *d = new wxDisplay;
     g_DispalySizePix = d->GetClientArea().GetWidth();
@@ -229,8 +229,8 @@ bool Printer_pi::DeInit(void)
         m_pDialog->Close();
         delete m_pDialog;
         m_pDialog = NULL;
-        delete g_pDC;
-        g_pDC = NULL;
+        //delete g_pDC;
+        //g_pDC = NULL;
         m_bShowDlg = false;
         SetToolbarItemState(m_leftclick_tool_id, m_bShowDlg);
     }

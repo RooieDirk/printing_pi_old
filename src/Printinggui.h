@@ -30,8 +30,8 @@
 #pragma once
 
 //#include "Printing_pi.h"
-#include "pidc.h"
-#include <wx/artprov.h>
+//#include "pidc.h"
+//#include <wx/artprov.h>
 #include <wx/bitmap.h>
 #include <wx/button.h>
 #include <wx/checkbox.h>
@@ -60,8 +60,8 @@
 #include <wx/string.h>
 #include <wx/textctrl.h>
 #include <wx/tglbtn.h>
-#include <wx/timer.h>
-#include <wx/xrc/xmlres.h>
+//#include <wx/timer.h>
+//#include <wx/xrc/xmlres.h>
 
 //*)
 

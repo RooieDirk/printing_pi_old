@@ -33,7 +33,7 @@
 
 #ifndef WX_PRECOMP
   #include "wx/wx.h"
-  #include <wx/glcanvas.h>
+  //#include <wx/glcanvas.h>
 #endif // precompiled headers
 
 #include <wx/fileconf.h>

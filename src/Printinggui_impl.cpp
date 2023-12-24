@@ -25,19 +25,19 @@
 //  ***************************************************************************
 //  */
 //
-#include <stdio.h>
+//#include <stdio.h>
 
 #include <wx/progdlg.h>
 #include <wx/textfile.h>
 #include <wx/timer.h>
 #include <wx/wx.h>
 #include <wx/wfstream.h>
-#include "wx/tglbtn.h"
+//#include "wx/tglbtn.h"
 
-#include "qtstylesheet.h"
+//#include "qtstylesheet.h"
 #include "Printinggui_impl.h"
 #include "Printing_pi.h"
-#include <pidc.h>
+//#include <pidc.h>
 #include <wx/paper.h>
 #include "ChartBorders.h"
 #include "Legenda.h"
@@ -133,7 +133,7 @@ void Dlg::OnSaveButtonClick(wxCommandEvent& event)
   mdc->Blit(0,0, w, h, First->GetLastDC(), 0, 0);
   mdc->SelectObject(wxNullBitmap);
   const wxImage image = bm.ConvertToImage();
-  wxInitAllImageHandlers();
+  ::wxInitAllImageHandlers();
   wxFileDialog
   saveFileDialog(this, _("Save chart file"), "", "",
                  "PNG files (*.png)|*.png", wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
