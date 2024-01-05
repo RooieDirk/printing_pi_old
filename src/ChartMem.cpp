@@ -73,10 +73,8 @@ wxRect ChRect, ChR1, ChR2, ChR25, ChR3, ChR35;
 
 ChartMem::ChartMem(wxDC* dc)
 {
+  ChartMem();
   DcIn = dc;
-  Next = NULL;
-  Previous = NULL;
-  DC = new wxMemoryDC();
   UpdateDCin(DcIn);
 }
 ChartMem::ChartMem(ChartMem* pr)

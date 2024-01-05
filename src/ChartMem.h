@@ -52,14 +52,14 @@ public:
   virtual ~ChartMem();
   virtual void UpdateDCin(wxDC* dc);
   void UpdateDC();
-  void UpdateDC(int nextno){if(nextno)if(Next) Next->UpdateDC(--nextno);}
+  void UpdateDC(int nextno){if(nextno > 0){if(Next!=NULL) Next->UpdateDC(--nextno);} else UpdateDC();}
   wxDC* GetDC(){return DC;}
   void AddChild(ChartMem*);
-  void SetSizeMax(wxSize size){SizeMax = size; if (Next) Next->SetSizeMax(size);}
+  void SetSizeMax(wxSize size){SizeMax = size; if (Next!=NULL) Next->SetSizeMax(size);}
   void SetPrevious(ChartMem* cm){Previous = cm;}
   wxSize GetMaxSize(){return SizeMax;}
   void SetDC(wxDC* dc){DcIn = dc;}
-  wxDC*  GetLastDC(){return (Next)? Next->GetLastDC(): GetDC();}
+  wxDC*  GetLastDC(){return (Next!=NULL)? Next->GetLastDC(): GetDC();}
   wxMemoryDC* DC;
 protected:
 

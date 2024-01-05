@@ -123,9 +123,10 @@ void Dlg::OnPreviewPaint(wxPaintEvent& event)
 void Dlg::OnSaveButtonClick(wxCommandEvent& event)
 {
   wxCoord w, h;
+  First->UpdateDC();
   First->GetLastDC()->GetSize(&w, &h);
-  wxBitmap bm(w, h, 32);
-  bm.UseAlpha(false);
+  wxBitmap bm(w, h);
+  //bm.UseAlpha(false);
   wxMemoryDC* mdc = new wxMemoryDC();
   mdc->SelectObject(bm);
   mdc->SetBackground(*wxWHITE_BRUSH);
