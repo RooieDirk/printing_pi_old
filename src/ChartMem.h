@@ -60,6 +60,7 @@ public:
   wxSize GetMaxSize(){return SizeMax;}
   void SetDC(wxDC* dc){DcIn = dc;}
   wxDC*  GetLastDC(){return (Next!=NULL)? Next->GetLastDC(): GetDC();}
+  //wxBitmap bm;
   wxMemoryDC* DC;
 protected:
 

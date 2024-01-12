@@ -103,7 +103,7 @@ void ChartMem::UpdateDCin(wxDC* dc)
   DcIn = dc;
   w = wxMin(w, SizeMax.GetWidth());
   h = wxMin(h, SizeMax.GetHeight());
-  wxBitmap bm(w, h);
+  wxBitmap bm(w, h,24);
   if(!DC) DC = new wxMemoryDC();
   DC->SelectObject(wxNullBitmap);
   DC->SelectObject(bm);

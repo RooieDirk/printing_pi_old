@@ -125,7 +125,7 @@ void Dlg::OnSaveButtonClick(wxCommandEvent& event)
   wxCoord w, h;
   First->UpdateDC();
   First->GetLastDC()->GetSize(&w, &h);
-  wxBitmap bm(w, h);
+  wxBitmap bm(w, h,24);
   //bm.UseAlpha(false);
   wxMemoryDC* mdc = new wxMemoryDC();
   mdc->SelectObject(bm);

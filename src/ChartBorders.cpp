@@ -167,11 +167,14 @@ void ChartBorderCalc::UpdateDCin(wxDC* dc) {
   DcIn = dc;
   w = wxMin(w, SizeMax.GetWidth());
   h = wxMin(h, SizeMax.GetHeight());
-  wxBitmap bm(w, h, 32);
-  bm.UseAlpha(false);
-  if (!DC) DC = new wxMemoryDC();
-    DC->SelectObject(wxNullBitmap);
-  DC->SelectObject(bm);
+  wxBitmap bm(w, h, 24);
+  //bm.UseAlpha(false);
+  if (DC!=NULL){
+    delete DC;
+  }
+  DC = new wxMemoryDC(bm);
+//     DC->SelectObject(wxNullBitmap);
+//   DC->SelectObject(bm);
   // DC->Blit(0,0, w, h, dc, 0,0);
   CalcSizes(dc);
   DrawBorders();
